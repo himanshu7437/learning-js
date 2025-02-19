@@ -33,3 +33,44 @@ buttons.forEach( function (button) {
 });
 
 ```
+
+## project 2
+
+```javascript
+const form = document.querySelector('form')
+// this usecase will give you empty 
+// const height = parseFloat(document.querySelector('#height').value)
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault()
+
+  const h = parseInt(document.querySelector('#height').value);
+  const w = parseInt(document.querySelector('#weight').value);
+  const results = document.querySelector('#results');
+
+  if( h === '' || h < 0 || isNaN(h)) {
+    results.innerHTML = `Please give a valid height ${h}`;
+    return;
+  }
+  else if( w === '' || w < 0 || isNaN(w)) {
+    results.innerHTML = `Please give a valid weight ${w}`;
+    return;
+  } else {
+    const bmi = (w/((h*h)/10000)).toFixed(2);
+    results.innerHTML = `<span>${bmi}</span>`
+    const newli = document.createElement('h1')
+    if(bmi<18.6){
+      newli.innerHTML = 'you are underweight'
+    }
+    else if(bmi>24.9){
+      newli.innerHTML = 'you are overweight'
+    }
+    else {
+      newli.innerHTML = 'you are normal'
+    }
+    results.appendChild(newli)
+    }
+
+});
+
+```
