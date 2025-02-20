@@ -15,6 +15,16 @@
         console.log('Himanshu');
     }
     setTimeout(sayHimanshu, 2000); // setTimeout --> delay
-    
+
+    const changeText = function () {
+        document.querySelector('h1').innerHTML = 'best js series';
+    }
+    const changeMe = setTimeout(changeText, 4000);
+
+    document.querySelector('#stop').addEventListener('click', function() {
+        clearTimeout(changeMe); // clearTimeout --> cancel the timeout
+        console.log('stopped');
+    });
+
 </script>
 </html>

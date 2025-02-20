@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Chai Aur JavaScript</h1>
+    <button id="Start">Start</button>
+    <button id="stop">stop</button>
+</body>
+<script>
+
+    const sayDate = function(str) {
+        console.log(str , Date.now());
+    }
+
+    const interValid = setInterval(sayDate, 2000, "hii"); // setInterval --> repeat the function after every 2 seconds
+
+    clearInterval(interValid); // clearInterval --> stop the interval
+
+</script>
+
+</html>

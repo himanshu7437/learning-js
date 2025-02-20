@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Chai Aur JavaScript</h1>
+    <button id="Start">Start</button>
+    <button id="stop">stop</button>
+</body>
+<script>
+
+    // task -- > create a program such that when you click on the start button, it should print "Hello World" every 2 seconds
+    // and when you click on the stop button, it should stop printing "Hello World"
+    const Start = document.getElementById('Start');
+    const Stop = document.getElementById('stop');
+
+    let myInterval;
+
+    function startPrint() {
+        console.log('Hello World');
+    }
+
+    Start.addEventListener('click', function() {
+        if(!myInterval) {
+        console.log('Started');
+        myInterval = setInterval(startPrint, 2000);
+        }
+    });
+
+    Stop.addEventListener('click', function() {
+        clearInterval(myInterval);
+        myInterval = null;
+        console.log('Stopped');
+    });
+
+</script>
+
+</html>
