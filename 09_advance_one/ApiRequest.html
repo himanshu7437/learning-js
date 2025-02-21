@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Api request</title>
+</head>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    div {
+        background-color: #333;
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+    img {
+        display: block;
+        margin: 0 auto;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    #profile {
+        display: block;
+        margin: 0 auto;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+</style>
+<body>
+    <!-- 0	UNSENT	Client has been created. open() not called yet.
+1	OPENED	open() has been called.
+2	HEADERS_RECEIVED	send() has been called, and headers and status are available.
+3	LOADING	Downloading; responseText holds partial data.
+4	DONE	The operation is complete. -->
+</body>
+<script>
+    // task - create a card for a user and show the data from the api
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://api.github.com/users/himanshu7437', true);
+    xhr.onload = function () {
+        if (this.status === 200) {
+            const data = JSON.parse(this.responseText);
+            console.log(data);
+            const user = document.createElement('div');
+            user.innerHTML = `
+                <img src="${data.avatar_url}" alt="user" style="width: 100px; border-radius: 50%;">
+                <br>
+                <h1>${data.name}</h1>
+                <p>${data.bio}</p>
+                <p>${data.location}</p>
+                <p>${data.followers} followers</p>
+                <p>${data.following} following</p>
+                <p>${data.public_repos} repos</p>
+                <button id="profile" > View Profile </button>
+            `;
+            document.body.appendChild(user);
+
+            // open the profile in new tab
+            document.body.addEventListener('click', function(event) {
+                if (event.target.id === 'profile') {
+                    window.open('https://github.com/himanshu7437', '_blank');
+                }
+            });
+        }
+    }
+    xhr.send();
+    
+</script>
+</html>
